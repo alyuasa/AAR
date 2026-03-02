@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max Verstappen - Red Bull Racing 2026</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #222;
+            color: #ddd;
+        }
+        header {
+            background-color: #001f3f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #hero {
+            background-color: #001f3f;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .logo {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+        .drivers-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .driver-card {
+            text-align: center;
+            width: 30%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .driver-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        .driver-photo {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .car-container {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .car-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .stats-card {
+            background-color: #eee;
+            padding: 20px;
+            border-radius: 8px;
+            width: 40%;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        body.dark-mode .stats-card {
+            background-color: #333;
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #bio img {
+            float: left;
+            margin-right: 20px;
+            width: 200px;
+            border-radius: 50%;
+        }
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+        body.dark-mode .accordion {
+            background-color: #333;
+            color: #ddd;
+        }
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+        body.dark-mode .active, body.dark-mode .accordion:hover {
+            background-color: #444;
+        }
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
+        body.dark-mode .panel {
+            background-color: #333;
+        }
+        #gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        #gallery img {
+            width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        footer {
+            background-color: #001f3f;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        #toggle-mode {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #001f3f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Max Verstappen - Red Bull Racing</h2>
+        <nav>
+            <a onclick="scrollToSection('hero')">Início</a>
+            <a onclick="scrollToSection('bio')">Biografia</a>
+            <a onclick="scrollToSection('achievements')">Conquistas</a>
+            <a onclick="scrollToSection('gallery')">Galeria</a>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <img src="https://cdn-4.motorsport.com/images/mgl/Y99JQRbY/s8/red-bull-racing-logo-1.jpg" alt="Red Bull Racing Logo" class="logo">
+        <h1>Monoplaza 2026 - Max Verstappen</h1>
+        <div class="drivers-container">
+            <div class="driver-card">
+                <img src="https://sportsbase.io/images/gpfans/copy_1200x800/a2eca603b469ecb9817c9cdc2b8e0dd34ed6a8f7.jpg" alt="Max Verstappen" class="driver-photo">
+                <h2>Max Verstappen</h2>
+                <p>Idade: 28</p>
+                <p>Local de Nascimento: Hasselt, Bélgica</p>
+            </div>
+        </div>
+        <div class="car-container">
+            <img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_3392/q_auto/v1740000000/fom-website/2026/Red%20Bull/SI202601150723.webp" alt="Carro Red Bull 2026" class="car-photo">
+        </div>
+        <div class="stats-container">
+            <div class="stats-card">
+                <h3>Estatísticas de Max</h3>
+                <p>Corridas: 233</p>
+                <p>Vitórias: 64</p>
+                <p>Poles: 40</p>
+                <p>Campeonatos: 4</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="bio">
+        <img src="https://sportsbase.io/images/gpfans/copy_1200x800/a2eca603b469ecb9817c9cdc2b8e0dd34ed6a8f7.jpg" alt="Retrato de Max Verstappen">
+        <h2>Biografia de Max Verstappen</h2>
+        <p>Max Emilian Verstappen, nascido em 30 de setembro de 1997 na Bélgica, é um piloto de automobilismo holandês que compete na Fórmula 1 pela equipe Oracle Red Bull Racing. Ele é filho do ex-piloto de F1 Jos Verstappen e da kartista Sophie Kumpen.</p>
+        <p>Verstappen estreou na Fórmula 1 aos 17 anos, tornando-se o piloto mais jovem da história da categoria. Em 2026, ele continua como o pilar da Red Bull.</p>
+        <p>Até março de 2026, Verstappen acumula mais de 64 vitórias, 40 poles e 4 títulos mundiais.</p>
+    </section>
+
+    <section id="achievements">
+        <h2>Conquistas Principais</h2>
+        <button class="accordion">Campeonatos Mundiais</button>
+        <div class="panel">
+            <p>Max Verstappen é tetracampeão mundial da Fórmula 1, vencendo os títulos consecutivos de 2021 a 2024. Ele é um dos apenas cinco pilotos na história a conquistar quatro títulos seguidos.</p>
+        </div>
+        <button class="accordion">Recordes</button>
+        <div class="panel">
+            <p>- Piloto mais jovem a competir em uma corrida de F1 (17 anos).<br>
+            - Mais vitórias consecutivas em uma temporada (10 em 2023).<br>
+            - Mais poles consecutivas (8 de novembro de 2023 a maio de 2024).<br>
+            - Mais de 64 vitórias em GPs até 2026.</p>
+        </div>
+        <button class="accordion">Carreira na Red Bull</button>
+        <div class="panel">
+            <p>Desde 2016 na Red Bull, Max conquistou dezenas de vitórias e pódios. Em 2026, a equipe entra em uma nova era com motores Ford.</p>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Galeria</h2>
+        <img src="https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_3392/q_auto/v1740000000/fom-website/2026/Red%20Bull/SI202601150723.webp" alt="Carro Red Bull 2026">
+        <img src="https://sportsbase.io/images/gpfans/copy_1200x800/a2eca603b469ecb9817c9cdc2b8e0dd34ed6a8f7.jpg" alt="Max Verstappen">
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - Landing Page de Max Verstappen. Inspirado em poster de fã. Dados de fontes públicas.</p>
+    </footer>
+
+    <button id="toggle-mode">Modo Escuro</button>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                panel.style.display = panel.style.display === "block" ? "none" : "block";
+            });
+        }
+
+        document.getElementById('toggle-mode').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            this.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Escuro';
+        });
+    </script>
+
+</body>
+</html>
