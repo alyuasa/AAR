@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayrton Senna – O Rei da Fórmula 1</title>
+  <meta name="description" content="Homenagem a Ayrton Senna: tricampeão mundial de F1, ídolo eterno do Brasil e símbolo de determinação e talento."/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --senna-yellow: #ffbe0a;
+      --senna-green: #008037;
+      --senna-blue: #002776;
+      --red: #c21a1a;
+      --dark: #0f172a;
+      --gray: #334155;
+      --light: #f8fafc;
+      --radius: 1rem;
+      --shadow: 0 10px 30px rgba(0,0,0,0.12);
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--dark);
+      background: var(--light);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(92%, 1280px);
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+
+    header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      background: rgba(12, 12, 12, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,190,10,0.18);
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      background: rgba(12, 12, 12, 0.98);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 5rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--senna-yellow);
+      letter-spacing: -0.04em;
+      text-shadow: 0 2px 10px rgba(255,190,10,0.4);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: #eee;
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -6px;
+      left: 0;
+      background: var(--senna-yellow);
+      transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--senna-yellow);
+    }
+
+    /* Hamburguer mobile */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 28px;
+      height: 3px;
+      background: white;
+      border-radius: 3px;
+      transition: all 0.4s;
+    }
+
+    .hero {
+      min-height: 100dvh;
+      background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.75)),
+                  url('https://www.autoo.it/ufiles/medium/ayrton_senna_copia.jpg?t=02032021') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.8rem, 9vw, 8.5rem);
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.7);
+    }
+
+    .hero p {
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      opacity: 0.95;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.4rem;
+      background: var(--senna-yellow);
+      color: var(--dark);
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 1.15rem;
+      transition: var(--transition);
+      box-shadow: 0 8px 25px rgba(255,190,10,0.35);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 16px 40px rgba(255,190,10,0.5);
+      background: #ffd541;
+    }
+
+    section {
+      padding: clamp(5rem, 10vw, 10rem) 0;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--dark);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1.8rem 1.6rem;
+    }
+
+    .card h3 {
+      color: var(--senna-green);
+      margin-bottom: 0.8rem;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #ccc;
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      font-size: 0.95rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--senna-yellow);
+      color: var(--dark);
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        right: 0;
+        background: rgba(12,12,12,0.98);
+        padding: 2rem;
+        gap: 1.8rem;
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+      .menu-toggle.active span:nth-child(2) { opacity: 0; }
+      .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <nav class="container">
+      <div class="logo">SENNA</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#historia">História</a>
+        <a href="#conquistas">Conquistas</a>
+        <a href="#legado">Legado</a>
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ayrton Senna</h1>
+      <p>O maior piloto brasileiro de todos os tempos.<br>Tricampeão mundial. Ídolo eterno.</p>
+      <a href="#historia" class="btn">Conheça sua história</a>
+    </div>
+  </section>
+
+  <section id="historia" class="container">
+    <h2>História</h2>
+    <p style="max-width: 780px; margin: 0 auto; font-size: 1.18rem; text-align: center;">
+      <strong>Ayrton Senna da Silva</strong> (1960–1994) foi um piloto brasileiro de Fórmula 1, considerado por muitos o maior de todos os tempos. 
+      Sua genialidade em condições adversas (especialmente chuva), velocidade pura e determinação marcaram época. 
+      Ele conquistou o coração do Brasil e do mundo com talento, paixão e carisma.
+    </p>
+  </section>
+
+  <section id="conquistas" class="container" style="background: linear-gradient(180deg, #f8fafc, #f1f5f9);">
+    <h2>Conquistas Principais</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://blog.mixauto.com.br/wp-content/uploads/2020/10/Design-sem-nome-3.jpg" alt="Ayrton Senna levantando bandeira do Brasil">
+        <div class="card-content">
+          <h3>3x Campeão Mundial</h3>
+          <p>1988, 1990 e 1991 pela McLaren-Honda.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://forbes.com.br/wp-content/uploads/2024/06/capacete-ayrton-senna-1.jpg" alt="Capacete Ayrton Senna">
+        <div class="card-content">
+          <h3>65 Pole Positions</h3>
+          <p>Recorde histórico por muitos anos - sinônimo de volta perfeita.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/04/GettyImages-1443309749-e1714492402663.jpg?w=1200&h=1200" alt="Senna abrindo champagne">
+        <div class="card-content">
+          <h3>41 Grandes Prêmios</h3>
+          <p>Incluindo vitórias épicas em Mônaco (6x) e Interlagos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="legado" class="container">
+    <h2>Legado Eterno</h2>
+    <p style="max-width: 780px; margin: 0 auto 2.5rem; font-size: 1.18rem; text-align: center;">
+      Após sua trágica morte em 1994, Ayrton continuou inspirando gerações. O <strong>Instituto Ayrton Senna</strong> já transformou a vida de milhões de crianças brasileiras através da educação de qualidade.
+    </p>
+    <div style="text-align:center;">
+      <a href="https://institutoayrtonsenna.org.br/" target="_blank" class="btn" style="background:var(--senna-green); color:white;">
+        Conheça o Instituto Ayrton Senna →
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 - Homenagem a Ayrton Senna</p>
+    <p style="margin-top:0.8rem; opacity:0.7; font-style:italic;">
+      “Se você não está disputando para vencer, por que está correndo?” - Ayrton Senna
+    </p>
+  </footer>
+
+  <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+  <script>
+    // Menu mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Header scrolled
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 600);
+    });
+  </script>
+</body>
+</html>
