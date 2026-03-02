@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamilton · Uma lenda da F1</title>
+  <!-- Fontes de alta qualidade (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (ícones) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0b0b0b;
+      color: #f0f0f0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* tipagem títulos esportiva */
+    h1, h2, h3, .hero-sub, .stat-number, .section-subtitle {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ----- HEADER TRANSPARENTE / HERO ----- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* imagem de fundo (alta qualidade) — foto icônica Hamilton capacete */
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1541447272587-d8d8d2e97884?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* carro de F1 visão lateral */
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.5) saturate(1.2);
+      z-index: 1;
+    }
+
+    /* sobreposição gradiente para destacar texto */
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 90%);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      padding: 1rem;
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #e10600; /* vermelho F1 */
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 15vw, 7rem);
+      font-weight: 800;
+      line-height: 1;
+      text-transform: uppercase;
+      color: white;
+      text-shadow: 0 0 20px rgba(225,6,0,0.4);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      color: #e10600;
+      display: inline-block;
+      transform: scale(1.02);
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 1.5rem auto 2.5rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+      backdrop-filter: blur(2px);
+    }
+
+    .btn {
+      background: #e10600;
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 8px 30px rgba(225,6,0,0.3);
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn i {
+      margin-left: 8px;
+    }
+
+    .btn:hover {
+      background: #b00400;
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(225,6,0,0.5);
+    }
+
+    /* seção biografia / estatísticas */
+    .section {
+      padding: 6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-light {
+      background: #0f0f0f;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .section-title span {
+      color: #e10600;
+    }
+
+    .section-subtitle {
+      color: #aaa;
+      font-size: 1.2rem;
+      font-weight: 500;
+      max-width: 700px;
+      margin-bottom: 3.5rem;
+      border-left: 4px solid #e10600;
+      padding-left: 1.5rem;
+    }
+
+    /* grid de stats com cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: #1a1a1a;
+      border-radius: 24px;
+      padding: 2rem 1rem;
+      text-align: center;
+      border: 1px solid #2a2a2a;
+      transition: 0.2s;
+      box-shadow: 0 15px 30px -15px black;
+    }
+
+    .stat-card:hover {
+      border-color: #e10600;
+      transform: translateY(-6px);
+    }
+
+    .stat-number {
+      font-size: 3.8rem;
+      font-weight: 800;
+      color: #e10600;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ccc;
+    }
+
+    /* timeline biográfica */
+    .bio-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .bio-text {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .bio-text p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #ddd;
+    }
+
+    .bio-highlight {
+      color: #e10600;
+      font-weight: 600;
+    }
+
+    .bio-image {
+      flex: 1.2;
+      min-width: 280px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -10px black;
+      border: 1px solid #333;
+    }
+
+    .bio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .bio-image:hover img {
+      transform: scale(1.03);
+    }
+
+    /* cards de conquistas */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .achievement-card {
+      background: #141414;
+      border-radius: 30px;
+      padding: 2rem 1.5rem;
+      border: 1px solid #2c2c2c;
+      transition: all 0.2s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .achievement-card:hover {
+      border-color: #e10600;
+      background: #1c1c1c;
+    }
+
+    .achievement-icon {
+      font-size: 2.8rem;
+      color: #e10600;
+      margin-bottom: 1.2rem;
+    }
+
+    .achievement-card h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .achievement-card p {
+      color: #a0a0a0;
+      font-size: 1rem;
+    }
+
+    /* galeria de fotos estilo high-end */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      background: #1c1c1c;
+      aspect-ratio: 1 / 1.2;
+      border: 1px solid #2a2a2a;
+      transition: 0.25s ease;
+      box-shadow: 0 20px 30px -15px black;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(0.2) contrast(1.1);
+      transition: transform 0.5s, filter 0.4s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+      filter: grayscale(0) contrast(1.2);
+    }
+
+    .gallery-item:hover {
+      border-color: #e10600;
+    }
+
+    /* citação / legado */
+    .quote-section {
+      background: #0a0a0a;
+      text-align: center;
+      padding: 5rem 2rem;
+      border-bottom: 1px solid #e1060022;
+    }
+
+    .quote-text {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 2rem;
+      font-weight: 500;
+      font-family: 'Rajdhani', sans-serif;
+      line-height: 1.3;
+      color: #eee;
+    }
+
+    .quote-text i {
+      color: #e10600;
+      font-size: 3rem;
+      opacity: 0.6;
+      margin: 0 1rem;
+    }
+
+    .quote-author {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      color: #888;
+    }
+
+    /* footer */
+    .footer {
+      padding: 3rem 0;
+      background: #070707;
+      color: #888;
+      text-align: center;
+      border-top: 1px solid #1f1f1f;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links a {
+      color: #aaa;
+      font-size: 1.8rem;
+      transition: 0.2s;
+    }
+
+    .social-links a:hover {
+      color: #e10600;
+      transform: scale(1.2);
+    }
+
+    /* responsividade galeria */
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-title {
+        font-size: 5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO com imagem de alta qualidade -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <div class="hero-sub">Sir Lewis Hamilton</div>
+      <h1 class="hero-title"><span>HAMILTON</span></h1>
+      <p class="hero-description">
+        7 vezes campeão mundial de Fórmula 1 · 103 vitórias · 104 poles · O piloto com mais conquistas da história.
+      </p>
+      <a href="#bio" class="btn">explorar legado <i class="fas fa-flag-checkered"></i></a>
+    </div>
+  </section>
+
+  <!-- estatísticas rápidas -->
+  <div class="section-light" style="padding: 3rem 0;">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number">7</div><div class="stat-label">Títulos Mundiais</div></div>
+        <div class="stat-card"><div class="stat-number">103</div><div class="stat-label">Vitórias</div></div>
+        <div class="stat-card"><div class="stat-number">104</div><div class="stat-label">Pole Positions</div></div>
+        <div class="stat-card"><div class="stat-number">197</div><div class="stat-label">Pódios</div></div>
+        <div class="stat-card"><div class="stat-number">🏁</div><div class="stat-label">1° piloto negro na F1</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIOGRAFIA com foto -->
+  <section id="bio" class="section container">
+    <h2 class="section-title">Lenda <span>viva</span> do automobilismo</h2>
+    <div class="section-subtitle">Stevenage, 1985 — Mercedes, McLaren e o topo do esporte a motor</div>
+    
+    <div class="bio-grid">
+      <div class="bio-text">
+        <p><span class="bio-highlight">Sir Lewis Hamilton</span> nasceu em 7 de janeiro de 1985. Estreou na Fórmula 1 em 2007 pela McLaren, deixando o mundo boquiaberto ao quase conquistar o título no ano de estreia. Em 2008, tornou-se o campeão mundial mais jovem da época. </p>
+        <p>Desde 2013 na Mercedes, redefiniu a excelência: sete títulos mundiais (empatando com Schumacher), mais de 100 vitórias e poles. Fora das pistas, é ativista dos direitos humanos, sustentabilidade e diversidade no esporte. Cavaleiro do Império Britânico desde 2021.</p>
+        <p><i class="fas fa-quote-left" style="color:#e10600;"></i> Não é sobre o destino, é sobre a jornada e as pessoas que te levantam.</p>
+      </div>
+      <div class="bio-image">
+        <!-- foto retrato de alta qualidade (Hamilton capacete + macacão) -->
+        <img src="https://lncimg.lance.com.br/cdn-cgi/image/width=1280,height=768,quality=75,format=webp/uploads/2024/02/000_34HA8X2-scaled-aspect-ratio-512-320.jpg" alt="Lewis Hamilton capacete e macacão">
+      </div>
+    </div>
+  </section>
+
+  <!-- Conquistas em cards -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="section-title">Números que <span>definem</span> uma era</h2>
+      <div class="section-subtitle">Recordes absolutos e marcos históricos</div>
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+          <h3>7x campeão</h3>
+          <p>2008, 2014, 2015, 2017, 2018, 2019, 2020 — ao lado de Michael Schumacher, o maior número de títulos.</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-flag-checkered"></i></div>
+          <h3>103 vitórias</h3>
+          <p>Mais vitórias na história da F1, superando Schumacher em 2020. Média de 6 vitórias por temporada.</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-stopwatch"></i></div>
+          <h3>104 poles</h3>
+          <p>Recorde de voltas lançadas na primeira posição. Hamilton é o rei da classificação.</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-star"></i></div>
+          <h3>197 pódios</h3>
+          <p>Mais de 60% dos GPs disputados terminou no top 3. Consistência impecável.</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-globe"></i></div>
+          <h3>Projeto Mission 44</h3>
+          <p>Filantropia e inclusão: fundação para apoiar jovens sub-representados na educação e esporte.</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-crown"></i></div>
+          <h3>Sir Hamilton</h3>
+          <p>Condecorado cavaleiro pela Rainha Elizabeth II em 2021 por serviços prestados ao automobilismo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA DE FOTOS ALTA QUALIDADE -->
+  <section class="section container">
+    <h2 class="section-title">momentos <span>icônicos</span></h2>
+    <div class="section-subtitle">Clique e sinta a velocidade — imagens em altíssima resolução</div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://tse1.mm.bing.net/th/id/OIP.WT5aq-QtM8o4wbz26MknhAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Hamilton comemorando no pódio"></div>
+      <div class="gallery-item"><img src="https://cdn-1.motorsport.com/images/amp/2wBZ4kK0/s1000/lewis-hamilton-mercedes-f1-w11.jpg" alt="Mercedes W11 de Hamilton"></div>
+      <div class="gallery-item"><img src="https://th.bing.com/th/id/OIP.8KqzZUC8aaWcpq7xdurB6QHaEK?w=303&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Capacete estiloso do Hamilton"></div>
+      <div class="gallery-item"><img src="https://e0.365dm.com/20/11/1600x900/skysports-lewis-hamilton-f1_5172991.jpg" alt="Hamilton"></div>
+      <div class="gallery-item"><img src="https://th.bing.com/th/id/R.87b1c07ec9a44498b6e8847890794633?rik=qJy5P4frsyIwfQ&riu=http%3a%2f%2fdriversec.com%2fwp-content%2fuploads%2f2020%2f04%2fHamilton-Mercedes-AFP-scaled.jpg&ehk=PVog9jrsjlyMPNsoGrLytMK13jaz68LbeizT%2fKg5rjI%3d&risl=&pid=ImgRaw&r=0" alt="Hamilton e seu carro"></div>
+      <div class="gallery-item"><img src="https://autogear.pt/wp-content/uploads/2025/01/file_16661948866797a86338e634.46830486.webp" alt="Detalhe do macacão"></div>
+    </div>
+  </section>
+
+  <!-- Citação impactante -->
+  <div class="quote-section">
+    <div class="quote-text">
+      <i class="fas fa-quote-left"></i> Ainda estou perseguindo a perfeição. Sei que nunca vou alcançá-la, mas é essa busca que me move. <i class="fas fa-quote-right"></i>
+    </div>
+    <div class="quote-author">— LEWIS HAMILTON</div>
+  </div>
+
+  <!-- FOOTER com redes sociais fictícias -->
+  <footer class="footer">
+    <div class="social-links">
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p style="max-width: 600px; margin: 0 auto 1rem;">Site oficial fictício · fã page dedicada a Sir Lewis Hamilton. Todas as imagens são de alta qualidade e meramente ilustrativas.</p>
+    <p>© 2025 · #TeamLH · Fórmula 1</p>
+  </footer>
+</body>
+</html>
