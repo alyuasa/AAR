@@ -10,5 +10,5 @@ app.get("/aar", (req, res, next) => {
 });
 
 app.get("/aar", (req, res, next) => {
-    return res.status(200).sendFile("norris.html", {root: './'});
+    return res.status(200).sendFile("hamilton.html", {root: './'});
 });
